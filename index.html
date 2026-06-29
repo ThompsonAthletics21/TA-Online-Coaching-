@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #080808;
-    --card: #161616;
-    --red: #cc1212;
-    --red-bright: #e51c1c;
+    --black: #0a0a0a;
+    --card: #1e1e1e;
+    --red: #e01515;
+    --red-bright: #f52222;
     --white: #ffffff;
-    --offwhite: #e8e8e8;
-    --muted: #777;
-    --border: rgba(204,18,18,0.3);
-    --border-dim: rgba(255,255,255,0.08);
+    --offwhite: #eeeeee;
+    --muted: #a0a0a0;
+    --border: rgba(224,21,21,0.45);
+    --border-dim: rgba(255,255,255,0.13);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -107,9 +107,9 @@
     transition: background 0.2s;
     user-select: none;
   }
-  .program-header:hover { background: rgba(255,255,255,0.02); }
+  .program-header:hover { background: rgba(255,255,255,0.04); }
   .program-card.open .program-header {
-    background: linear-gradient(90deg, rgba(204,18,18,0.06), transparent);
+    background: linear-gradient(90deg, rgba(224,21,21,0.1), transparent);
   }
 
   .program-icon {
@@ -175,7 +175,7 @@
   /* What's included list */
   .feat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .feat-list li {
-    font-size: 13px; color: #c8c8c8;
+    font-size: 13px; color: #dedede;
     display: flex; gap: 12px; align-items: flex-start;
     line-height: 1.5; font-weight: 300;
   }
@@ -190,12 +190,12 @@
     font-size: 22px; color: var(--red);
     line-height: 1; flex-shrink: 0; width: 20px;
   }
-  .how-text { font-size: 12.5px; color: #bbb; line-height: 1.55; font-weight: 300; }
+  .how-text { font-size: 12.5px; color: #d4d4d4; line-height: 1.55; font-weight: 300; }
   .how-text strong { color: var(--offwhite); font-weight: 500; display: block; margin-bottom: 1px; }
 
   /* What's included box */
   .feat-box {
-    background: rgba(255,255,255,0.025);
+    background: rgba(255,255,255,0.05);
     border: 1px solid var(--border-dim);
     border-left: 2px solid rgba(204,18,18,0.5);
     padding: 16px 18px;
@@ -207,7 +207,7 @@
     font-size: 13px; color: var(--muted);
     line-height: 1.7; font-weight: 300;
     padding: 18px 20px;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255,255,255,0.04);
     border-left: 3px solid rgba(204,18,18,0.4);
     margin-bottom: 24px;
   }
@@ -247,7 +247,7 @@
     background: var(--card); border-right: 1px solid var(--border-dim);
   }
   .nutri-card:last-child {
-    background: linear-gradient(160deg, #1a0707, #160505);
+    background: linear-gradient(160deg, #251010, #1e0c0c);
     border-top: 3px solid var(--red); position: relative; overflow: hidden;
   }
   .nutri-card:last-child::before {
@@ -280,7 +280,7 @@
   .nutri-divider { height: 1px; background: var(--border-dim); margin-bottom: 16px; }
   .nutri-feat { list-style: none; display: flex; flex-direction: column; gap: 8px; }
   .nutri-feat li {
-    font-size: 12.5px; color: #bbb;
+    font-size: 12.5px; color: #d4d4d4;
     display: flex; gap: 10px; align-items: flex-start;
     line-height: 1.5; font-weight: 300;
   }
@@ -339,6 +339,15 @@
     .sticky-cta-left { display: none; }
     .apply-btn { flex: 1; justify-content: center; }
     .apply-card-btn { align-self: stretch; text-align: center; }
+
+    /* Larger body text on mobile */
+    .feat-list li { font-size: 14.5px; line-height: 1.6; }
+    .how-text { font-size: 14px; line-height: 1.6; }
+    .program-desc-block { font-size: 14px; }
+    .nutri-desc { font-size: 14px; }
+    .nutri-feat li { font-size: 14px; }
+    .program-tagline { font-size: 13px; }
+    .body-cta-text { font-size: 13px; }
   }
 </style>
 </head>
