@@ -3,17 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thompson Athletics — Online Programs</title>
+<title>Thompson Athletics — Online Health and Fitness Coaching</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #080808;
-    --dark: #111111;
-    --mid: #1a1a1a;
     --card: #161616;
     --red: #cc1212;
     --red-bright: #e51c1c;
-    --red-dark: #960d0d;
     --white: #ffffff;
     --offwhite: #e8e8e8;
     --muted: #777;
@@ -29,670 +26,614 @@
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     min-height: 100vh;
-    padding: 0 0 80px;
+    padding-bottom: 120px;
     background-image: radial-gradient(ellipse 100% 40% at 50% 0%, rgba(204,18,18,0.15) 0%, transparent 60%);
   }
 
-  .container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
-    position: relative;
     text-align: center;
-    padding: 56px 24px 52px;
-    overflow: hidden;
+    padding: 52px 24px 44px;
     border-bottom: 1px solid var(--border-dim);
-    margin-bottom: 56px;
+    margin-bottom: 44px;
+    position: relative;
   }
   .hero::before {
     content: '';
-    position: absolute;
-    bottom: 0; left: 50%; transform: translateX(-50%);
-    width: 200px; height: 2px;
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 160px; height: 2px;
     background: linear-gradient(90deg, transparent, var(--red), transparent);
+  }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 14px;
+    animation: fadeDown 0.5s ease both;
   }
   .hero-title {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 11vw, 96px);
-    letter-spacing: 0.06em;
-    line-height: 0.9;
+    font-size: clamp(48px, 10vw, 88px);
+    letter-spacing: 0.06em; line-height: 0.92;
     color: var(--white);
-    text-shadow: 0 0 60px rgba(204,18,18,0.3);
-    animation: fadeDown 0.7s ease 0.1s both;
+    text-shadow: 0 0 60px rgba(204,18,18,0.25);
+    animation: fadeDown 0.6s ease 0.1s both;
     margin-bottom: 16px;
   }
   .hero-title span { color: var(--red-bright); }
   .hero-sub {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    animation: fadeDown 0.7s ease 0.2s both;
+    font-size: 13px; color: var(--muted);
+    font-weight: 300; line-height: 1.7;
+    max-width: 400px; margin: 0 auto;
+    animation: fadeDown 0.6s ease 0.2s both;
   }
-  .hero-sub span { color: var(--red); margin: 0 8px; }
 
-  /* SECTION LABELS */
+  /* ── SECTION LABEL ── */
   .section-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
   }
-  .section-label::before { content: ''; width: 18px; height: 2px; background: var(--red); flex-shrink: 0; }
+  .section-label::before { content: ''; width: 16px; height: 2px; background: var(--red); flex-shrink: 0; }
   .section-label::after  { content: ''; flex: 1; height: 1px; background: var(--border-dim); }
 
-  .section { margin-bottom: 60px; animation: fadeUp 0.7s ease both; }
-  .section:nth-child(2) { animation-delay: 0.05s; }
-  .section:nth-child(3) { animation-delay: 0.10s; }
-  .section:nth-child(4) { animation-delay: 0.15s; }
-  .section:nth-child(5) { animation-delay: 0.20s; }
-  .section:nth-child(6) { animation-delay: 0.25s; }
-  .section:nth-child(7) { animation-delay: 0.30s; }
+  .section { margin-bottom: 52px; animation: fadeUp 0.5s ease both; }
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.10s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
 
-  /* FEAT LIST */
-  .feat-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  /* ── PROGRAM CARDS ── */
+  .program-grid {
+    display: flex; flex-direction: column; gap: 2px;
+    border: 1px solid var(--border-dim); overflow: hidden;
+  }
+
+  .program-card {
+    background: var(--card);
+    border-left: 3px solid transparent;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .program-card.open { border-left-color: var(--red); }
+
+  .program-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 22px 24px; cursor: pointer;
+    border-bottom: 1px solid var(--border-dim);
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .program-header:hover { background: rgba(255,255,255,0.02); }
+  .program-card.open .program-header {
+    background: linear-gradient(90deg, rgba(204,18,18,0.06), transparent);
+  }
+
+  .program-icon {
+    width: 38px; height: 38px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border-dim); font-size: 13px;
+    color: var(--muted);
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+  .program-card.open .program-icon { color: var(--red); }
+  .program-card.open .program-icon {
+    border-color: var(--red);
+    background: rgba(204,18,18,0.08);
+  }
+
+  .program-header-info { flex: 1; }
+  .program-type-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 2px;
+  }
+  .program-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px; letter-spacing: 0.05em;
+    color: var(--white); line-height: 1;
+  }
+  .program-tagline {
+    font-size: 12px; color: var(--muted);
+    margin-top: 2px; font-weight: 300;
+  }
+
+  .contact-prompt {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); white-space: nowrap; flex-shrink: 0;
+  }
+  .program-card.open .contact-prompt { color: var(--red); }
+
+  .program-chevron {
+    width: 18px; height: 18px; flex-shrink: 0;
+    color: var(--muted); font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.25s, color 0.2s;
+  }
+  .program-card.open .program-chevron { transform: rotate(180deg); color: var(--red); }
+
+  /* ── EXPAND BODY ── */
+  .program-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .program-body-inner { padding: 28px 24px 32px; }
+
+  /* Two-col layout inside body */
+  .body-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+  .body-label {
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px;
+    font-family: 'Barlow Condensed', sans-serif;
+  }
+
+  /* What's included list */
+  .feat-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .feat-list li {
-    font-size: 12.5px; color: #bbb;
-    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: #c8c8c8;
+    display: flex; gap: 12px; align-items: flex-start;
     line-height: 1.5; font-weight: 300;
   }
   .feat-list li::before { content: '▸'; color: var(--red); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
-  .feat-list li.dim { color: var(--muted); }
-  .feat-list li.dim::before { color: #333; }
+  .feat-list li strong { color: var(--white); font-weight: 500; }
 
-  /* ── TRAINING PLAN GRID ── */
-  .plan-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+  /* How it works steps */
+  .how-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .how-item { display: flex; gap: 14px; align-items: flex-start; }
+  .how-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px; color: var(--red);
+    line-height: 1; flex-shrink: 0; width: 20px;
+  }
+  .how-text { font-size: 12.5px; color: #bbb; line-height: 1.55; font-weight: 300; }
+  .how-text strong { color: var(--offwhite); font-weight: 500; display: block; margin-bottom: 1px; }
+
+  /* What's included box */
+  .feat-box {
+    background: rgba(255,255,255,0.025);
     border: 1px solid var(--border-dim);
-    overflow: hidden;
+    border-left: 2px solid rgba(204,18,18,0.5);
+    padding: 16px 18px;
   }
-  .plan {
-    background: var(--card);
-    padding: 30px 22px;
-    position: relative;
-    transition: background 0.25s ease;
-    display: flex; flex-direction: column;
-  }
-  .plan:hover { background: #1e1e1e; }
-  .plan + .plan { border-left: 1px solid var(--border-dim); }
+  .feat-box .body-label { margin-bottom: 14px; }
 
-  .plan.highlight {
-    background: linear-gradient(160deg, #1a0707 0%, #160505 100%);
-    border-top: 3px solid var(--red);
-    padding-top: 27px;
+  /* Description block */
+  .program-desc-block {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.7; font-weight: 300;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid rgba(204,18,18,0.4);
+    margin-bottom: 24px;
   }
-  .plan.highlight::before {
+
+  /* CTA block */
+  .body-cta {
+    display: flex; flex-direction: column; gap: 10px;
+    padding-top: 22px; border-top: 1px solid var(--border-dim);
+    margin-top: 24px;
+  }
+  .body-cta-text {
+    font-size: 12px; color: var(--muted); font-weight: 300;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .apply-card-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 28px;
+    background: var(--red); color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .apply-card-btn:hover { background: var(--red-bright); }
+
+  /* ── NUTRITION SECTION ── */
+  .nutrition-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    border: 1px solid var(--border-dim); overflow: hidden;
+  }
+  .nutri-card {
+    padding: 28px 26px; display: flex; flex-direction: column;
+  }
+  .nutri-card:first-child {
+    background: var(--card); border-right: 1px solid var(--border-dim);
+  }
+  .nutri-card:last-child {
+    background: linear-gradient(160deg, #1a0707, #160505);
+    border-top: 3px solid var(--red); position: relative; overflow: hidden;
+  }
+  .nutri-card:last-child::before {
     content: '';
     position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(204,18,18,0.1) 0%, transparent 65%);
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(204,18,18,0.1), transparent 70%);
     pointer-events: none;
   }
-
-  .plan-badge {
+  .nutri-badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 9px; font-weight: 800;
     letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--white); background: var(--red);
-    padding: 4px 10px; margin-bottom: 14px;
-    align-self: flex-start;
+    padding: 3px 9px; margin-bottom: 14px; align-self: flex-start;
   }
-
-  .plan-duration {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 4px;
-  }
-  .plan-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px; letter-spacing: 0.05em;
-    color: var(--white); line-height: 1; margin-bottom: 6px;
-  }
-  .plan-desc {
-    font-size: 12px; color: var(--muted);
-    line-height: 1.5; margin-bottom: 18px; font-weight: 300;
-  }
-
-  /* Price block */
-  .price-block { margin-bottom: 6px; }
-  .price-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 2px; }
-  .price-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 50px; color: var(--white);
-    line-height: 1; letter-spacing: 0.02em;
-  }
-  .price-unit { font-size: 13px; color: var(--muted); font-weight: 300; }
-  .price-alt {
-    font-size: 12px; color: var(--red);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500; letter-spacing: 0.06em;
-    margin-bottom: 6px;
-  }
-  .price-note {
-    font-size: 11px; color: var(--muted);
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 0.04em; margin-bottom: 20px;
-  }
-
-  .plan-divider { height: 1px; background: var(--border-dim); margin-bottom: 16px; }
-  .plan-sub-label {
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 10px;
-    font-family: 'Barlow Condensed', sans-serif;
-  }
-  .plan-footer-note {
-    font-size: 11px; color: var(--muted);
-    font-style: italic; line-height: 1.5;
-    margin-top: auto; padding-top: 14px;
-    border-top: 1px solid var(--border-dim);
-  }
-
-  /* ── NUTRITION ADD-ON BANNER ── */
-  .nutri-banner {
-    background: linear-gradient(105deg, #1a0505 0%, #1c0808 50%, #150404 100%);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--red);
-    padding: 28px 36px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: hidden;
-  }
-  .nutri-banner::after {
-    content: 'NUTRITION';
-    position: absolute;
-    right: -60px; top: 50%; transform: translateY(-50%) rotate(90deg);
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 80px;
-    color: rgba(204,18,18,0.05);
-    letter-spacing: 0.1em;
-    pointer-events: none;
-  }
-  .nb-left { flex: 1; min-width: 220px; }
-  .nb-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 8px;
-  }
-  .nb-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px; letter-spacing: 0.05em;
-    color: var(--white); line-height: 1.05; margin-bottom: 8px;
-  }
-  .nb-desc {
-    font-size: 13px; color: var(--muted);
-    line-height: 1.6; font-weight: 300; max-width: 400px;
-  }
-  .nb-right { display: flex; gap: 0; align-items: stretch; flex-shrink: 0; }
-  .nb-stat {
-    text-align: center;
-    padding: 8px 28px;
-    border-left: 1px solid var(--border-dim);
-  }
-  .nb-stat:first-child { border-left: none; }
-  .nb-stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px; color: var(--red-bright);
-    line-height: 1; letter-spacing: 0.04em;
-  }
-  .nb-stat-label {
-    font-size: 10px; color: var(--muted);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500; letter-spacing: 0.1em;
-    text-transform: uppercase; margin-top: 3px;
-  }
-
-  /* nutrition adjustment note */
-  .nutri-adjust {
-    margin-top: 14px;
-    background: rgba(255,255,255,0.02);
+  .nutri-badge.outline {
+    background: transparent; color: var(--muted);
     border: 1px solid var(--border-dim);
-    border-left: 3px solid rgba(204,18,18,0.5);
-    padding: 14px 20px;
-    font-size: 12.5px; color: var(--muted);
-    line-height: 1.6;
   }
-  .nutri-adjust strong {
-    color: var(--offwhite); font-weight: 500;
-  }
-
-  /* ── ONGOING COACHING CALLOUT ── */
-  .ongoing {
-    background: linear-gradient(110deg, #170505 0%, #120404 60%, #0e0303 100%);
-    border: 1px solid var(--border);
-    padding: 36px 40px;
-    position: relative; overflow: hidden;
-  }
-  .ongoing::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 70% 100% at 100% 50%, rgba(204,18,18,0.08) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .ongoing-inner {
-    display: flex; align-items: center;
-    justify-content: space-between; gap: 32px; flex-wrap: wrap;
-  }
-  .ongoing-left { flex: 1; min-width: 240px; }
-  .ongoing-eyebrow {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 10px;
-  }
-  .ongoing-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 38px; letter-spacing: 0.05em;
-    color: var(--white); line-height: 1; margin-bottom: 12px;
-  }
-  .ongoing-desc {
-    font-size: 13px; color: var(--muted); line-height: 1.7;
-    font-weight: 300; max-width: 400px;
-  }
-  .ongoing-right { flex-shrink: 0; }
-  .ongoing-price-wrap {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    padding: 28px 36px;
-    text-align: center;
-  }
-  .ongoing-price-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 8px;
-  }
-  .ongoing-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px; color: var(--white);
-    line-height: 1; letter-spacing: 0.02em;
-  }
-  .ongoing-price-unit {
-    font-size: 14px; color: var(--muted); font-weight: 300; margin-bottom: 12px;
-  }
-  .ongoing-tags {
-    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
-  }
-  .ongoing-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 9px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--muted);
-    border: 1px solid var(--border-dim);
-    padding: 4px 10px;
-  }
-
-  /* ── INTRO PLANS ── */
-  .intro-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    border: 1px solid var(--border-dim);
-    overflow: hidden;
-  }
-  .intro-card {
-    background: var(--card);
-    padding: 28px 22px;
-    display: flex; flex-direction: column;
-    transition: background 0.25s ease;
-  }
-  .intro-card:hover { background: #1e1e1e; }
-  .intro-card + .intro-card { border-left: 1px solid var(--border-dim); }
-  .intro-type {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--red); margin-bottom: 4px;
-  }
-  .intro-name {
+  .nutri-name {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 26px; letter-spacing: 0.05em;
-    color: var(--white); line-height: 1; margin-bottom: 6px;
+    color: var(--white); line-height: 1; margin-bottom: 8px;
   }
-  .intro-desc {
-    font-size: 12px; color: var(--muted);
-    line-height: 1.5; margin-bottom: 18px; font-weight: 300;
-  }
-  .intro-price-row { display: flex; align-items: baseline; gap: 4px; margin-bottom: 18px; }
-  .intro-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 44px; color: var(--white); line-height: 1;
-  }
-  .intro-price-unit { font-size: 13px; color: var(--muted); font-weight: 300; }
-  .intro-divider { height: 1px; background: var(--border-dim); margin-bottom: 14px; }
-
-  /* FOOTER */
-  .footer {
-    text-align: center; margin-top: 72px;
-    animation: fadeUp 0.7s ease 0.4s both;
-  }
-  .footer-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px; letter-spacing: 0.18em; color: var(--white);
-  }
-  .footer-certs {
-    font-size: 11px; color: var(--muted);
-    font-family: 'Barlow Condensed', sans-serif;
-    letter-spacing: 0.1em; margin-top: 5px;
-  }
-  .footer-cta {
-    margin-top: 20px;
-    font-size: 12px; color: var(--red);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
-  }
-
-  /* PROGRAM TYPES GRID */
-  .progtype-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    border: 1px solid var(--border-dim);
-    overflow: hidden;
-  }
-  .progtype-card {
-    background: var(--card);
-    padding: 26px 24px;
-  }
-  .progtype-card + .progtype-card { border-left: 1px solid var(--border-dim); }
-  .progtype-featured {
-    background: linear-gradient(160deg, #1a0707, #160505);
-    border-top: 3px solid var(--red);
-  }
-  .progtype-desc {
+  .nutri-desc {
     font-size: 12.5px; color: var(--muted);
-    line-height: 1.6; font-weight: 300;
+    line-height: 1.6; font-weight: 300; margin-bottom: 18px;
+  }
+  .nutri-divider { height: 1px; background: var(--border-dim); margin-bottom: 16px; }
+  .nutri-feat { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .nutri-feat li {
+    font-size: 12.5px; color: #bbb;
+    display: flex; gap: 10px; align-items: flex-start;
+    line-height: 1.5; font-weight: 300;
+  }
+  .nutri-feat li::before { content: '▸'; color: var(--red); flex-shrink: 0; font-size: 10px; margin-top: 3px; }
+  .nutri-contact {
+    margin-top: auto; padding-top: 18px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--red);
   }
 
-  @media (max-width: 820px) {
-    .plan-grid { grid-template-columns: repeat(2, 1fr); }
-    .plan + .plan { border-left: none; border-top: 1px solid var(--border-dim); }
-    .plan:nth-child(2) { border-left: 1px solid var(--border-dim); border-top: none; }
-    .intro-grid { grid-template-columns: 1fr; }
-    .intro-card + .intro-card { border-left: none; border-top: 1px solid var(--border-dim); }
-    .progtype-grid { grid-template-columns: 1fr; }
-    .progtype-card + .progtype-card { border-left: none; border-top: 1px solid var(--border-dim); }
+  /* ── STICKY CTA ── */
+  .sticky-cta {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: rgba(8,8,8,0.96);
+    border-top: 1px solid var(--border-dim);
+    padding: 14px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; z-index: 100;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   }
-  @media (max-width: 540px) {
-    .plan-grid { grid-template-columns: 1fr; }
-    .plan + .plan { border-left: none !important; border-top: 1px solid var(--border-dim); }
-    .nutri-banner { flex-direction: column; }
-    .ongoing-inner { flex-direction: column; }
+  .sticky-cta-left {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 500;
+    letter-spacing: 0.06em; color: var(--muted);
   }
+  .sticky-cta-left strong { color: var(--white); font-weight: 700; }
+  .apply-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 28px;
+    background: var(--red); color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    text-decoration: none; white-space: nowrap;
+    transition: background 0.2s; flex-shrink: 0;
+  }
+  .apply-btn:hover { background: var(--red-bright); }
+  .apply-btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
-  @keyframes fadeUp   { from { opacity: 0; transform: translateY(20px);  } to { opacity: 1; transform: translateY(0); } }
-  @keyframes fadeDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+  /* ── FOOTER ── */
+  .footer { text-align: center; margin-top: 56px; }
+  .footer-name { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.18em; color: var(--white); }
+  .footer-certs { font-size: 11px; color: var(--muted); font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.08em; margin-top: 5px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp   { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 620px) {
+    .body-cols { grid-template-columns: 1fr; gap: 22px; }
+    .nutrition-grid { grid-template-columns: 1fr; }
+    .nutri-card:first-child { border-right: none; border-bottom: 1px solid var(--border-dim); }
+    .sticky-cta-left { display: none; }
+    .apply-btn { flex: 1; justify-content: center; }
+    .apply-card-btn { align-self: stretch; text-align: center; }
+  }
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-title">Online<br><span>Programs</span></div>
-  <div class="hero-sub">Remote Coaching <span>·</span> Thompson Athletics <span>·</span> Science-Based Results</div>
+  <div class="hero-eyebrow">Remote Coaching · Thompson Athletics</div>
+  <div class="hero-title">Online Health and<br><span>Fitness Coaching</span></div>
+  <div class="hero-sub">Explore each program below and reach out on Instagram to get started. Pricing is discussed directly.</div>
 </div>
 
 <div class="container">
 
-  <!-- TRAINING PLANS -->
+  <!-- TRAINING PROGRAMS -->
   <div class="section">
-    <div class="section-label">Training Programs — All Styles</div>
-    <div class="plan-grid">
+    <div class="section-label">Training Programs</div>
+    <div class="program-grid">
 
-      <!-- 8 WEEK -->
-      <div class="plan">
-        <div class="plan-duration">8 Weeks</div>
-        <div class="plan-name">Foundation Block</div>
-        <div class="plan-desc">A focused entry-point program. You get an initial call, a fully custom plan built around your goals, and limited DM access throughout.</div>
-        <div class="price-block">
-          <div class="price-row">
-            <div class="price-main">$150</div>
-            <div class="price-unit">one time</div>
+      <!-- ── STRENGTH ── -->
+      <div class="program-card" id="card-strength">
+        <div class="program-header" onclick="toggleCard('card-strength')">
+          <div class="program-icon">▲</div>
+          <div class="program-header-info">
+            <div class="program-type-tag">Strength</div>
+            <div class="program-name">Strength Training</div>
+            <div class="program-tagline">Powerlifting &amp; compound strength — progressive overload, tracked meticulously</div>
           </div>
-          <div class="price-note">No monthly payment option</div>
+          <div class="contact-prompt">Contact for pricing</div>
+          <div class="program-chevron">▼</div>
         </div>
-        <div class="plan-divider"></div>
-        <div class="plan-sub-label">What's included</div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>Fully custom training program</li>
-          <li>Limited DM access</li>
-          <li class="dim">No check-ins</li>
-        </ul>
-        <div class="plan-footer-note">Best for self-motivated clients who want a solid custom program and prefer to train independently.</div>
-      </div>
+        <div class="program-body" id="body-strength">
+          <div class="program-body-inner">
 
-      <!-- 12 WEEK -->
-      <div class="plan">
-        <div class="plan-duration">12 Weeks</div>
-        <div class="plan-name">Performance Block</div>
-        <div class="plan-desc">A longer commitment for clients ready to follow a structured program through real progression over three months.</div>
-        <div class="price-block">
-          <div class="price-row">
-            <div class="price-main">$200</div>
-            <div class="price-unit">one time</div>
-          </div>
-          <div class="price-note">No monthly payment option</div>
-        </div>
-        <div class="plan-divider"></div>
-        <div class="plan-sub-label">What's included</div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>Fully custom training program</li>
-          <li>Limited DM access</li>
-          <li class="dim">No check-ins</li>
-        </ul>
-        <div class="plan-footer-note">Great for clients who've trained before and want a longer, more detailed custom program.</div>
-      </div>
-
-      <!-- 16 WEEK -->
-      <div class="plan">
-        <div class="plan-duration">16 Weeks</div>
-        <div class="plan-name">Transformation Block</div>
-        <div class="plan-desc">Four months of structured coaching with monthly check-ins, program adjustments, and direct access to me throughout.</div>
-        <div class="price-block">
-          <div class="price-row">
-            <div class="price-main">$280</div>
-            <div class="price-unit">upfront</div>
-          </div>
-          <div class="price-alt">or $80 / month × 4</div>
-        </div>
-        <div class="plan-divider"></div>
-        <div class="plan-sub-label">What's included</div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>Fully custom training program</li>
-          <li>Monthly check-ins</li>
-          <li>Check-in photos reviewed</li>
-          <li>Program reassessments at check-ins</li>
-          <li>Full DM access</li>
-          <li>Priority responses</li>
-        </ul>
-        <div class="plan-footer-note">Recommended for clients who want real accountability and regular program adjustments throughout their block.</div>
-      </div>
-
-      <!-- 20 WEEK -->
-      <div class="plan">
-        <div class="plan-duration">20 Weeks</div>
-        <div class="plan-name">Elite Block</div>
-        <div class="plan-desc">The most comprehensive online program offered. Weekly check-ins and full ongoing support across a full five-month block.</div>
-        <div class="price-block">
-          <div class="price-row">
-            <div class="price-main">$400</div>
-            <div class="price-unit">upfront</div>
-          </div>
-          <div class="price-alt">or $100 / month × 5</div>
-        </div>
-        <div class="plan-divider"></div>
-        <div class="plan-sub-label">What's included</div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>Fully custom training program</li>
-          <li>Weekly check-ins</li>
-          <li>Check-in photos reviewed</li>
-          <li>Program reassessments at check-ins</li>
-          <li>Full DM access</li>
-          <li>Priority responses</li>
-        </ul>
-        <div class="plan-footer-note">For fully committed clients who want the highest level of support and weekly touchpoints throughout their journey.</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- PROGRAM TYPES NOTE -->
-  <div class="section">
-    <div class="section-label">Available for all durations</div>
-    <div class="progtype-grid">
-
-      <div class="progtype-card">
-        <div class="intro-type">Program Type 01</div>
-        <div class="intro-name">Strength</div>
-        <div class="progtype-desc">Built around compound lifts and progressive loading. Goal-focused on moving more weight over time.</div>
-      </div>
-
-      <div class="progtype-card progtype-featured">
-        <div class="intro-type">Program Type 02</div>
-        <div class="intro-name">Hypertrophy</div>
-        <div class="progtype-desc">Structured for muscle growth. Volume, tension, and metabolic stress dialed in across your full block.</div>
-      </div>
-
-      <div class="progtype-card">
-        <div class="intro-type">Program Type 03</div>
-        <div class="intro-name">Functional Movement</div>
-        <div class="progtype-desc">Train to move better and build a resilient body. Combines mobility, stability, and functional strength patterns.</div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- NUTRITION ADD-ON -->
-  <div class="section">
-    <div class="section-label">Nutrition Add-On</div>
-    <div class="nutri-banner">
-      <div class="nb-left">
-        <div class="nb-eyebrow">Add to any training plan</div>
-        <div class="nb-title">Custom Nutrition Plan + Macro Targets</div>
-        <div class="nb-desc">Stack a fully custom nutrition plan onto any training program. Built around your goal, your body, and your lifestyle — not a generic template.</div>
-      </div>
-      <div class="nb-right">
-        <div class="nb-stat">
-          <div class="nb-stat-num">$75</div>
-          <div class="nb-stat-label">One-Time Add-On</div>
-        </div>
-        <div class="nb-stat" style="border-left: 1px solid var(--border-dim);">
-          <div class="nb-stat-num">+$30</div>
-          <div class="nb-stat-label">/ mo to adjust</div>
-        </div>
-      </div>
-    </div>
-    <div class="nutri-adjust">
-      <strong>16 & 20 Week plans only:</strong> Add nutrition assessment and adjustments synced to your scheduled training check-ins for an additional <strong>$30 / month</strong>. Your macros and plan get reviewed and updated at every check-in — so your nutrition evolves alongside your training.
-    </div>
-  </div>
-
-  <!-- ONGOING COACHING -->
-  <div class="section">
-    <div class="section-label">No commitment option</div>
-    <div class="ongoing">
-      <div class="ongoing-inner">
-        <div class="ongoing-left">
-          <div class="ongoing-eyebrow">Training + Nutrition — Month to Month</div>
-          <div class="ongoing-title">Full Ongoing<br>Coaching</div>
-          <div class="ongoing-desc">Not ready to commit to a set block? Get a fully custom training program and nutrition coaching on a month-to-month basis. No contract, no fixed end date — just consistent coaching for as long as you need it.</div>
-          <br>
-          <ul class="feat-list">
-            <li>Initial discovery call</li>
-            <li>Fully custom training program</li>
-            <li>Custom nutrition plan + macro targets</li>
-            <li>Ongoing program & nutrition adjustments</li>
-            <li>Full DM access with priority responses</li>
-            <li>Cancel anytime — no contract</li>
-          </ul>
-        </div>
-        <div class="ongoing-right">
-          <div class="ongoing-price-wrap">
-            <div class="ongoing-price-label">Monthly Rate</div>
-            <div class="ongoing-price">$175</div>
-            <div class="ongoing-price-unit">per month</div>
-            <div class="ongoing-tags">
-              <div class="ongoing-tag">No Contract</div>
-              <div class="ongoing-tag">Training + Nutrition</div>
-              <div class="ongoing-tag">Cancel Anytime</div>
+            <div class="program-desc-block">
+              This program is built around powerlifting movements and general compound strength lifts. The goal is simple: move more weight over time. Every rep and every set is tracked inside a custom system built specifically for you, so progress is always measurable — not guesswork.
             </div>
+
+            <div class="body-cols">
+              <div class="feat-box">
+                <div class="body-label">What's included</div>
+                <ul class="feat-list">
+                  <li><strong>Fully custom strength program</strong> — built around your current numbers and goals</li>
+                  <li><strong>Weekly check-ins</strong> — form checks, progress reviews, training footage review, exercise execution coaching and cueing, and adjustments</li>
+                  <li><strong>Custom lift tracking system</strong> — built specifically for you to log every session</li>
+                  <li><strong>Program adjustments</strong> — made by me as your data shows what's working</li>
+                  <li><strong>Full DM access</strong> — throughout the month for questions and feedback</li>
+                  <li><strong>Delivered via app</strong> — your program lives in one place, easy to follow</li>
+                </ul>
+              </div>
+              <div>
+                <div class="body-label">How it works</div>
+                <ul class="how-list">
+                  <li class="how-item">
+                    <div class="how-num">1</div>
+                    <div class="how-text"><strong>Program delivery</strong> You receive a fully written program tailored to your current strength levels, training history, and goals.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">2</div>
+                    <div class="how-text"><strong>Meticulous tracking</strong> Every lift, set, and rep goes into your custom tracking system. Your data is what drives every decision I make.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">3</div>
+                    <div class="how-text"><strong>Weekly check-ins</strong> We review your progress each week — form, numbers, how you're feeling — and I adjust the program accordingly.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">4</div>
+                    <div class="how-text"><strong>Ongoing adjustments</strong> Nothing stays static. As your numbers move, so does the program — keeping you on the most efficient path forward.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="body-cta">
+              <div class="body-cta-text">Ready to start? Reach out on Instagram to discuss pricing and get started.</div>
+              <a class="apply-card-btn" href="https://ig.me/m/thompson.athletics_21" target="_blank">
+                Message on Instagram →
+              </a>
+            </div>
+
           </div>
         </div>
       </div>
+
+      <!-- ── HYPERTROPHY ── -->
+      <div class="program-card" id="card-hypertrophy">
+        <div class="program-header" onclick="toggleCard('card-hypertrophy')">
+          <div class="program-icon">◆</div>
+          <div class="program-header-info">
+            <div class="program-type-tag">Hypertrophy</div>
+            <div class="program-name">Muscle Building</div>
+            <div class="program-tagline">Volume and tension dialed in for maximum muscle growth</div>
+          </div>
+          <div class="contact-prompt">Contact for pricing</div>
+          <div class="program-chevron">▼</div>
+        </div>
+        <div class="program-body" id="body-hypertrophy">
+          <div class="program-body-inner">
+
+            <div class="program-desc-block">
+              This program is built around periodization — structured training cycles designed to keep you growing long-term, not just in the first few weeks. Your split varies based on your goals and where you are in your meso cycle, and deloads are programmed as needed so you never grind yourself into a plateau.
+            </div>
+
+            <div class="body-cols">
+              <div class="feat-box">
+                <div class="body-label">What's included</div>
+                <ul class="feat-list">
+                  <li><strong>Fully custom hypertrophy program</strong> — split and volume tailored to your goals and meso cycle</li>
+                  <li><strong>Periodized training cycles</strong> — structured accumulation, intensification, and deload phases for long-term growth</li>
+                  <li><strong>Weekly check-ins</strong> — form checks, progress reviews, training footage review, exercise execution coaching and cueing, photo check-ins to track physical change, and adjustments</li>
+                  <li><strong>Custom tracking system</strong> — log your numbers every session to ensure consistent progressive overload</li>
+                  <li><strong>Program adjustments</strong> — updated based on your data, photos, and where you are in your cycle</li>
+                  <li><strong>Full DM access</strong> — throughout the month for questions and feedback</li>
+                  <li><strong>Delivered via app</strong> — your program lives in one place, easy to follow</li>
+                </ul>
+              </div>
+              <div>
+                <div class="body-label">How it works</div>
+                <ul class="how-list">
+                  <li class="how-item">
+                    <div class="how-num">1</div>
+                    <div class="how-text"><strong>Program delivery</strong> You receive a fully written program built around your goals, training history, and the start of your first meso cycle.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">2</div>
+                    <div class="how-text"><strong>Accumulation phase</strong> Higher volume, moderate intensity — building the stimulus needed for growth across your target muscle groups.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">3</div>
+                    <div class="how-text"><strong>Intensification phase</strong> Volume pulls back, intensity increases — converting the work from accumulation into actual size and strength gains.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">4</div>
+                    <div class="how-text"><strong>Deload &amp; reassess</strong> A programmed deload lets your body recover and adapt. Your photos, numbers, and feedback drive what the next cycle looks like.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="body-cta">
+              <div class="body-cta-text">Ready to start? Reach out on Instagram to discuss pricing and get started.</div>
+              <a class="apply-card-btn" href="https://ig.me/m/thompson.athletics_21" target="_blank">Message on Instagram →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FUNCTIONAL ── -->
+      <div class="program-card" id="card-functional">
+        <div class="program-header" onclick="toggleCard('card-functional')">
+          <div class="program-icon">●</div>
+          <div class="program-header-info">
+            <div class="program-type-tag">Functional Movement</div>
+            <div class="program-name">Functional Training</div>
+            <div class="program-tagline">Mobility, stability, and strength — train to move better</div>
+          </div>
+          <div class="contact-prompt">Contact for pricing</div>
+          <div class="program-chevron">▼</div>
+        </div>
+        <div class="program-body" id="body-functional">
+          <div class="program-body-inner">
+
+            <div class="program-desc-block">
+              This program is built for people who want to move better in everyday life. The focus is on building core stability, strengthening the tendons and joints so they can handle load through a full range of motion, and developing the mobility, balance, and body control that most training programs ignore entirely. Progression here is driven by how well and how easily you move — not just by the numbers on the bar.
+            </div>
+
+            <div class="body-cols">
+              <div class="feat-box">
+                <div class="body-label">What's included</div>
+                <ul class="feat-list">
+                  <li><strong>Fully custom functional program</strong> — built around your current movement quality, limitations, and goals</li>
+                  <li><strong>Core stability training</strong> — targeted work to build the foundation that supports every movement you make</li>
+                  <li><strong>Joint &amp; tendon resilience</strong> — progressive loading through range of motion to strengthen connective tissue over time</li>
+                  <li><strong>Weekly check-ins</strong> — movement footage review, exercise execution coaching and cueing, and program adjustments</li>
+                  <li><strong>Progression based on movement quality</strong> — exercises advance as your form and ease of movement improve, not just when numbers go up</li>
+                  <li><strong>Full DM access</strong> — throughout the month for questions and feedback</li>
+                  <li><strong>Delivered via app</strong> — your program lives in one place, easy to follow</li>
+                </ul>
+              </div>
+              <div>
+                <div class="body-label">What this program targets</div>
+                <ul class="how-list">
+                  <li class="how-item">
+                    <div class="how-num">1</div>
+                    <div class="how-text"><strong>Mobility</strong> Improving the usable range of motion in your joints so your body can move freely without restriction or compensation.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">2</div>
+                    <div class="how-text"><strong>Stability &amp; balance</strong> Building the neuromuscular control to hold positions and move through them with intention — not just strength.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">3</div>
+                    <div class="how-text"><strong>Core strength</strong> Deep, functional core work that transfers directly to how you feel and move — in and out of the gym.</div>
+                  </li>
+                  <li class="how-item">
+                    <div class="how-num">4</div>
+                    <div class="how-text"><strong>Joint &amp; tendon health</strong> Gradual, intentional loading through range of motion to build connective tissue that can handle stress long-term.</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="body-cta">
+              <div class="body-cta-text">Ready to start? Reach out on Instagram to discuss pricing and get started.</div>
+              <a class="apply-card-btn" href="https://ig.me/m/thompson.athletics_21" target="_blank">Message on Instagram →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SPORT SPECIFIC ── -->
+      <div class="program-card" id="card-sport">
+        <div class="program-header" onclick="toggleCard('card-sport')">
+          <div class="program-icon">✦</div>
+          <div class="program-header-info">
+            <div class="program-type-tag">Sport Specific</div>
+            <div class="program-name">Sport Performance</div>
+            <div class="program-tagline">Purpose-built training around your sport's demands</div>
+          </div>
+          <div class="contact-prompt">Contact for pricing</div>
+          <div class="program-chevron">▼</div>
+        </div>
+        <div class="program-body" id="body-sport">
+          <div class="program-body-inner">
+
+            <div class="program-desc-block">
+              Every sport demands a different set of physical qualities. This program is built entirely around yours — developing the specific movements, muscles, tendons, and neuropathways your sport requires so you can perform at the highest level. There's no one-size-fits-all approach here. Your sport dictates everything about how we train.
+            </div>
+
+            <div class="body-cols">
+              <div class="feat-box">
+                <div class="body-label">What's included</div>
+                <ul class="feat-list">
+                  <li><strong>Fully custom sport-specific program</strong> — built around the physical demands of your sport</li>
+                  <li><strong>Sport movement development</strong> — training the exact movements, patterns, and qualities your sport requires</li>
+                  <li><strong>Muscle, tendon &amp; neuropathway training</strong> — developing the full system needed to perform, not just surface-level strength</li>
+                  <li><strong>Weekly performance check-ins</strong> — focused on sport-specific movement patterns, athletic output, and adjustments</li>
+                  <li><strong>Program adjustments</strong> — updated based on your performance data and athletic development</li>
+                  <li><strong>Full DM access</strong> — throughout the month for questions and feedback</li>
+                  <li><strong>Delivered via app</strong> — your program lives in one place, easy to follow</li>
+                </ul>
+              </div>
+              <div>
+                <div class="body-label">Who this is for</div>
+                <div style="font-size:12.5px; color:var(--muted); line-height:1.7; font-weight:300;">
+                  Athletes of any level who want training that directly carries over to their sport. Whether you're looking to improve power, speed, agility, endurance, or sport-specific strength — this program is designed around what your sport actually demands of your body, not a generic athletic template.
+                </div>
+              </div>
+            </div>
+
+            <div class="body-cta">
+              <div class="body-cta-text">Ready to start? Reach out on Instagram to discuss pricing and get started.</div>
+              <a class="apply-card-btn" href="https://ig.me/m/thompson.athletics_21" target="_blank">Message on Instagram →</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- INTRO PLANS -->
+  <!-- NUTRITION -->
   <div class="section">
-    <div class="section-label">Not sure where to start</div>
-    <div class="intro-grid">
+    <div class="section-label">Nutrition Coaching</div>
+    <div class="nutrition-grid">
 
-      <div class="intro-card">
-        <div class="intro-type">Intro Plan — Strength</div>
-        <div class="intro-name">Strength Sample</div>
-        <div class="intro-desc">A 2-week sample of the Strength program. See the structure, feel the training style, and decide if it's the right fit before committing to a full block.</div>
-        <div class="intro-price-row">
-          <div class="intro-price">$50</div>
-          <div class="intro-price-unit">/ 2 weeks</div>
-        </div>
-        <div class="intro-divider"></div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>2-week custom program</li>
-          <li>Limited DM access</li>
+      <div class="nutri-card">
+        <span class="nutri-badge outline">Add-On</span>
+        <div class="nutri-name">Nutrition Add-On</div>
+        <div class="nutri-desc">Stack custom nutrition coaching on top of any training program. Your macros and plan are built around your goal and adjusted monthly alongside your training check-ins.</div>
+        <div class="nutri-divider"></div>
+        <ul class="nutri-feat">
+          <li>Custom macro targets</li>
+          <li>Nutrition plan built around your goal</li>
+          <li>Monthly nutrition adjustments</li>
+          <li>Nutrition Q&amp;A via DM</li>
         </ul>
+        <div class="nutri-contact">Contact for pricing →</div>
       </div>
 
-      <div class="intro-card">
-        <div class="intro-type">Intro Plan — Hypertrophy</div>
-        <div class="intro-name">Hypertrophy Sample</div>
-        <div class="intro-desc">A 2-week sample of the Hypertrophy program. Experience the volume, the split, and the feel of muscle-focused training before locking in a full block.</div>
-        <div class="intro-price-row">
-          <div class="intro-price">$50</div>
-          <div class="intro-price-unit">/ 2 weeks</div>
-        </div>
-        <div class="intro-divider"></div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>2-week custom program</li>
-          <li>Limited DM access</li>
+      <div class="nutri-card">
+        <span class="nutri-badge">Standalone</span>
+        <div class="nutri-name">Nutrition Only</div>
+        <div class="nutri-desc">No training program needed. Get fully custom nutrition coaching on its own — built around your body, your goal, and your lifestyle. Adjusted monthly as you progress.</div>
+        <div class="nutri-divider"></div>
+        <ul class="nutri-feat">
+          <li>Custom macro targets</li>
+          <li>Full nutrition plan</li>
+          <li>Monthly check-ins &amp; adjustments</li>
+          <li>Nutrition Q&amp;A via DM</li>
         </ul>
-      </div>
-
-      <div class="intro-card">
-        <div class="intro-type">Intro Plan — Functional</div>
-        <div class="intro-name">Functional Sample</div>
-        <div class="intro-desc">A 2-week sample of the Functional Movement program. Test the mobility work, stability focus, and movement quality coaching before choosing a full plan.</div>
-        <div class="intro-price-row">
-          <div class="intro-price">$50</div>
-          <div class="intro-price-unit">/ 2 weeks</div>
-        </div>
-        <div class="intro-divider"></div>
-        <ul class="feat-list">
-          <li>Initial discovery call</li>
-          <li>2-week custom program</li>
-          <li>Limited DM access</li>
-        </ul>
+        <div class="nutri-contact">Contact for pricing →</div>
       </div>
 
     </div>
@@ -701,10 +642,36 @@
   <!-- FOOTER -->
   <div class="footer">
     <div class="footer-name">Thompson Athletics</div>
-    <div class="footer-certs">ISSA CPT &nbsp;·&nbsp; ISSA CNC &nbsp;·&nbsp; ISSA Bodybuilding Specialist &nbsp;·&nbsp; Fort Myers, FL</div>
-    <div class="footer-cta">Ready to start? — @thompson.athletics_21</div>
+    <div class="footer-certs">ISSA CPT · ISSA CNC · ISSA Bodybuilding Specialist · Fort Myers, FL</div>
   </div>
 
 </div>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <div class="sticky-cta-left"><strong>Questions about a program?</strong> Reach out directly on Instagram.</div>
+  <a class="apply-btn" href="https://ig.me/m/thompson.athletics_21" target="_blank">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    Get in Touch
+  </a>
+</div>
+
+<script>
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    const bodyId = id.replace('card-', 'body-');
+    const body = document.getElementById(bodyId);
+    const isOpen = card.classList.contains('open');
+
+    document.querySelectorAll('.program-card').forEach(c => c.classList.remove('open'));
+    document.querySelectorAll('.program-body').forEach(b => b.style.maxHeight = null);
+
+    if (!isOpen) {
+      card.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+</script>
 </body>
 </html>
